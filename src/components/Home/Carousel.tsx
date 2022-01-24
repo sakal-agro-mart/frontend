@@ -14,23 +14,9 @@ type CarouselProps = {
 const Carousel = (props: CarouselProps) => {
   const [index, setIndex] = useState(0);
 
-  /*
-
-
-
-
-  - when this function is called the slide changes
-  - if you call with an index it changes to that
-
-  */
-  const slideHandler = (newIndex: number | void) => {
-    // if the userclicks the buttons then
-    // clear the interval and setIndex
-    if (newIndex !== undefined) {
-      clearInterval(interval.current);
-      setIndex(newIndex);
-    }
-
+  // this useEffect is used to add and remove classes
+  // based on the index value
+  useEffect(() => {
     // slides is the array of rendered images
     const slidesHTMLCollection =
       document.getElementsByClassName("carousel-image");
@@ -46,18 +32,30 @@ const Carousel = (props: CarouselProps) => {
       image.classList.add("carousel-hidden");
       image.classList.remove("carousel-visible");
     }
+  }, [index]);
 
-    // if the newIndex is undefined meaning the function
-    // is called from useInterval then just do ++
-    if (newIndex === undefined)
-      setIndex((prev) => (prev + 1) % props.carousels.length);
+  const interval = useInterval(() => {
+    setIndex((prev) => (prev + 1) % props.carousels.length);
+  }, 5000);
+
+  const buttonClickHandler = (i: number) => {
+    clearInterval(interval.current);
+    setIndex(i);
   };
 
-  const interval = useInterval(slideHandler, 5000);
+  /*
 
+
+
+
+
+
+  */
   return (
     <>
-      <div>{index}</div>
+      <div style={{ position: "absolute", zIndex: 5000, fontSize: 100 }}>
+        {index}
+      </div>
       {props.carousels.map(({ image, product }, i) => (
         <img key={i} className="carousel-image" src={image} />
       ))}
@@ -67,7 +65,7 @@ const Carousel = (props: CarouselProps) => {
           <Button
             key={i}
             active={i === index}
-            onClick={() => slideHandler(i)}
+            onClick={() => buttonClickHandler(i)}
           />
         ))}
       </div>
