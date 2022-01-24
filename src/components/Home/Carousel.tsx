@@ -24,12 +24,12 @@ const Carousel = (props: CarouselProps) => {
 
   */
   const slideHandler = (newIndex: number | void) => {
-    if (newIndex) {
+    // if the userclicks the buttons then
+    // clear the interval and setIndex
+    if (newIndex !== undefined) {
       clearInterval(interval.current);
       setIndex(newIndex);
     }
-
-    if (!newIndex) setIndex((prev) => (prev + 1) % props.carousels.length);
 
     // slides is the array of rendered images
     const slidesHTMLCollection =
@@ -46,6 +46,11 @@ const Carousel = (props: CarouselProps) => {
       image.classList.add("carousel-hidden");
       image.classList.remove("carousel-visible");
     }
+
+    // if the newIndex is undefined meaning the function
+    // is called from useInterval then just do ++
+    if (newIndex === undefined)
+      setIndex((prev) => (prev + 1) % props.carousels.length);
   };
 
   const interval = useInterval(slideHandler, 5000);
