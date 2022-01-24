@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import useInterval from "../../hooks/useInterval";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "./CarouselButton";
 
 type Carousels = {
@@ -13,6 +12,8 @@ type CarouselProps = {
 
 const Carousel = (props: CarouselProps) => {
   const [index, setIndex] = useState(0);
+
+  const interval = useRef<any>();
 
   // this useEffect is used to add and remove classes
   // based on the index value
@@ -34,9 +35,12 @@ const Carousel = (props: CarouselProps) => {
     }
   }, [index]);
 
-  const interval = useInterval(() => {
-    setIndex((prev) => (prev + 1) % props.carousels.length);
-  }, 5000);
+  // this useEffect is for start the autoslide
+  useEffect(() => {
+    interval.current = setInterval(() => {
+      setIndex((prev) => (prev + 1) % props.carousels.length);
+    }, 5000);
+  }, []);
 
   const buttonClickHandler = (i: number) => {
     clearInterval(interval.current);
@@ -53,9 +57,6 @@ const Carousel = (props: CarouselProps) => {
   */
   return (
     <>
-      <div style={{ position: "absolute", zIndex: 5000, fontSize: 100 }}>
-        {index}
-      </div>
       {props.carousels.map(({ image, product }, i) => (
         <img key={i} className="carousel-image" src={image} />
       ))}
