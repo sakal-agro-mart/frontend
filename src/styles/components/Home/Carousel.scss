@@ -1,0 +1,35 @@
+.carousel-container {
+  min-height: 360px;
+  height: 50vh;
+  background-color: $theme-gray;
+  box-sizing: border-box;
+  position: relative;
+
+  .carousel-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 100vw;
+    min-height: 360px;
+    height: 50vh;
+    transition: visibility 0.5s, opacity 0.5s;
+  }
+
+  .carousel-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .carousel-hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .carousel-buttons-container {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+  }
+}

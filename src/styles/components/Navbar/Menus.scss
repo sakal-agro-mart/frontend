@@ -1,0 +1,18 @@
+.nav-menus {
+  display: flex;
+  align-items: center;
+
+  .nav-links {
+    padding-left: 20px;
+
+    a {
+      padding: 0 0 0 10px;
+      text-decoration: none;
+      color: $theme-black;
+    }
+
+    [aria-current="page"] {
+      font-weight: bold;
+    }
+  }
+}
