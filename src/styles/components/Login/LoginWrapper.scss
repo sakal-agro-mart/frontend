@@ -1,0 +1,29 @@
+.login-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+
+    .wrapper-title {
+      color: $theme-green;
+      font-size: $font-large;
+
+      .sakal,
+      .mart {
+        font-weight: bold;
+      }
+      .agro {
+        font-weight: lighter;
+      }
+    }
+
+    .wrapper-subtitle {
+      color: $theme-black;
+    }
+  }
+}

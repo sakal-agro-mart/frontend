@@ -1,14 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
+@mixin box-shadow {
+  box-shadow: 2px 2px 3px lightgray;
+}
+
 $theme-black: #3d3e3b;
 $theme-green: #adcb0b;
 $theme-gray: #f6f6f6;
 
+$font-large: 3rem;
+$font-title: 1.5rem;
 $font-regular: 0.9rem;
+
+.title {
+  font-size: $font-title;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: $font-regular;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   color: $theme-black;
-  margin: 0;
   font-size: $font-regular;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu",
     "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -22,9 +43,15 @@ code {
     monospace;
 }
 
+@import "./components/Footer.scss";
 @import "./components/Navbar/index.scss";
 @import "./components/Navbar/Menus.scss";
 @import "./components/Navbar/Logo.scss";
 @import "./components/Home/Carousel.scss";
 @import "./components/Home/CarouselButton.scss";
+@import "./components/Login/LoginWrapper.scss";
+@import "./components/Login/FormWrapper.scss";
 @import "./layouts/Container.scss";
+@import "./layouts/Grid.scss";
+@import "./layouts/TitleGrid.scss";
+@import "./layouts/Card.scss";

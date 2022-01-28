@@ -10,6 +10,8 @@ const menus = () => {
       <div className="nav-links">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/categories">Categories</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/signup">Signup</NavLink>
       </div>
     </div>
   );
